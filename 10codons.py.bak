@@ -7,9 +7,6 @@ dna = 'ATAGCGAATATCTCTCATGAGAGGGAA'
 
 # your code goes here
 
-for i in range(0,len(dna)-2,3):
-    print(dna[i:i+3])
-print('end of loop')
 """
 python3 10codons.py
 ATA
