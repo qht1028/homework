@@ -15,7 +15,7 @@ for i in range(0,len(dna),1):
 GC=count/total
 print(f'{GC:.2f}')
 print('{:.2f}'.format(GC))
-print('%.3f' % (GC))
+print('%.2f' % (GC))
 
 
 """

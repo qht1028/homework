@@ -12,7 +12,6 @@ import random
 length = 30
 dna=""
 count=0
-total=0
 for i in range (length):
     r = random.randint(0, 4)
     if r <= 2:
@@ -26,11 +25,8 @@ for i in range (length):
 for i in range (length):
     if dna[i] == "A" or dna[i] == "T":
         count += 1 
-        total += 1 
-    else: 
-        total += 1
-ratio=count/total
-print(total, ratio, dna)        
+ratio=count/length
+print(length, ratio, dna)        
 
 
 """

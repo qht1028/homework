@@ -12,21 +12,17 @@ seq = 'ACGACGCAGGAGGAGAGTTTCAGAGATCACGAATACATCCATATTACCCAGAGAGAG'
 w = 11
 ratio = 0
 count = 0
-total = 0
 frame=''
 for i in range (w):
     if seq[i] == 'A' or seq[i] == 'T': 
-        total += 1 
         frame += seq[i]
     else: 
         count += 1 
-        total += 1
         frame += seq[i]
-ratio = count/total
+ratio = count/w
 print(f'{0} {frame} {ratio:.4f}')
 for i in range (1, len(seq)-w+1): 
-    frame = ''
-    frame += seq[i:i+w]
+    frame = seq[i:i+w]
     if seq[i+w-1] == "G" or seq[i+w-1] == "C":
         ratio += 0.090909
     else: ratio = ratio

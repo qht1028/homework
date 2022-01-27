@@ -6,13 +6,10 @@
 
 dna = 'ACAGAGCCAGCAGATATACAGCAGATACTAT' # feel free to change
 count=0
-total=0
 for i in range(0,len(dna),1): 
     if dna[i]=='G' or dna[i]=='C': 
         count+=1 
-        total+=1
-    else: total += 1
-GC=count/total
+GC=count/len(dna)
 print(f'{GC:.2f}')
 print('{:.2f}'.format(GC))
 print('%.2f' % (GC))
