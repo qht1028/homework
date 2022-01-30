@@ -26,7 +26,7 @@ for i in range (length):
     if dna[i] == "A" or dna[i] == "T":
         count += 1 
 ratio=count/length
-print(total, ratio, dna)        
+print(length, ratio, dna)        
 
 
 """

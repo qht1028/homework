@@ -28,27 +28,6 @@ for i in range (length):
 ratio=count/length
 print(length, ratio, dna)        
 
-
-"""
-length=30
-dna=""
-count=0
-total=0
-for i in range (length): 
-    r = random.randint(1, 4)
-    if r == 1: dna += "A"
-    elif r == 2: dna += "T"
-    elif r == 3: dna += "G"
-    else: dna += "C"  
-for i in range (length):
-    if dna[i] == "A" or dna[i] == "T":
-        count += 1 
-        total += 1 
-    else: 
-        total += 1
-ratio=count/total
-print(total, ratio, dna)
-"""
 """
 python3 22atseq.py
 30 0.6666666666666666 ATTACCGTAATCTACTATTAAGTCACAACC
