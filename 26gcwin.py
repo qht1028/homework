@@ -8,16 +8,12 @@
 seq = 'ACGACGCAGGAGGAGAGTTTCAGAGATCACGAATACATCCATATTACCCAGAGAGAG'
 w = 11
 for i in range (len(seq)-w+1): 
-    subseq = ''
     count = 0
-    total = 0
-    for j in range (i, i+11, 1): 
-        subseq += seq[j]
-        if seq[j] == 'G' or seq[j] == 'C': 
+    subseq=seq[i:i+w]
+    for j in range (w): 
+        if subseq[j] == 'G' or subseq[j] == 'C': 
             count += 1
-            total += 1
-        else: total += 1
-        ratio = count/total
+        ratio = count/w
     print(f'{i} {subseq} {ratio:.4f}')
 print()
         

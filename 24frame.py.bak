@@ -12,6 +12,7 @@ for i in range (len(dna)):
     c = dna[i]
     print(a, b, c)
 
+print()
 
 for i in range (0, len(dna)-2, 3): 
     for j in range (3): 

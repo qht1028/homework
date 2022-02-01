@@ -9,6 +9,7 @@ import random
 # Calculate the actual AT fraction while generating the sequence
 # Report the length, AT fraction, and sequence
 
+
 length = 30
 dna=""
 count=0
@@ -27,6 +28,25 @@ for i in range (length):
         count += 1 
 ratio=count/length
 print(length, ratio, dna)        
+
+print()
+
+length = 30
+dna = ""
+count = 0
+for i in range (length):
+    r=random. random()
+    if r <= 0.3: 
+        dna += "A"
+        count += 1
+    elif r <= 0.6: 
+        dna += "T"
+        count += 1
+    elif r <= 0.8: dna += "G"
+    else: dna += "C"
+ratio=count/length
+print(length, ratio, dna) 
+    
 
 """
 python3 22atseq.py

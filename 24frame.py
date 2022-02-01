@@ -7,10 +7,10 @@
 dna = 'ATGGCCTTT'
 
 for i in range (len(dna)): 
-    a = i 
-    b = i % 3
-    c = dna[i]
-    print(a, b, c)
+    position = i 
+    codon = i % 3
+    nt = dna[i]
+    print(position, codon, nt)
 
 print()
 
