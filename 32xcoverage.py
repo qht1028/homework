@@ -18,10 +18,10 @@ for i in range(number):
     init = random.randint(0,genome-read)
     for j in range (init, init+read):
         count[j] += 1
-min=count[0]
-max=count[0]
+min=count[read+1]
+max=count[read+1]
 total=0
-for i in range(genome): 
+for i in range(read, genome-read): 
     if min >= count[i]: 
         min = count[i]
     if max <= count[i]: 
