@@ -18,9 +18,7 @@ with open(sys.argv[1]) as fp:
 k = int(sys.argv[2])
 records = {}
 for i in range(len(seq)-k+1):
-    kmer=""
-    for j in range(i, i+k):
-        kmer += seq[j]
+    kmer=seq[i:i+k]
     if kmer not in records: 
         records[kmer] = 0
     records[kmer] += 1

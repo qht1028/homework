@@ -34,15 +34,13 @@ with open(sys.argv[1]) as fp:
             seq += line
     polypeptides.append((name, seq))
 
-def transmembrane(name, protein): 
-    frame1 = 8
-    frame2 = 11
-    keypoint = 30
+'''
+def transmembrane(name, protein, frame1, frame2, keypoint): 
     signal = 0
     helix = 0
     for i in range(keypoint + 1 - frame1): 
         kd = 0
-        for j in range(i, i+8): 
+        for j in range(i, i+frame1): 
             if   protein[j] == 'I': kd += 4.5
             elif protein[j] == 'V': kd += 4.2
             elif protein[j] == 'L': kd += 3.8
@@ -63,12 +61,11 @@ def transmembrane(name, protein):
             elif protein[j] == 'N': kd += -3.5
             elif protein[j] == 'K': kd += -3.9
             elif protein[j] == 'R': kd += -4.5
-        if kd >= 2.5: 
+        if kd/frame1 >= 2.5: 
             signal += 1 
-    judge = 0
-    for i in range(keypoint, len(protein) + 1 - frame2):
+    for i in range(keypoint + 1, len(protein) + 1 - frame2):
         kd = 0
-        for j in range(i, i+8): 
+        for j in range(i, i+frame2): 
             if   protein[j] == 'I': kd += 4.5
             elif protein[j] == 'V': kd += 4.2
             elif protein[j] == 'L': kd += 3.8
@@ -89,14 +86,58 @@ def transmembrane(name, protein):
             elif protein[j] == 'N': kd += -3.5
             elif protein[j] == 'K': kd += -3.9
             elif protein[j] == 'R': kd += -4.5
-        if kd >= 2.0: 
+        if kd/frame2 >= 2.0: 
             helix += 1
     return(name, signal, helix)
 
+frame1 = 8
+frame2 = 11
+keypoint = 30
 for name, protein in polypeptides: 
-    name, signal, helix = transmembrane(name, protein)
-    if signal > 1 and helix > 1: 
+    name, signal, helix = transmembrane(name, protein, frame1, frame2, keypoint)
+    if signal >= 1 and helix >= 1: 
         print(name)
+'''
+def hydrophob(protein):
+    kd = 0
+    for j in range(len(protein)): 
+        if   protein[j] == 'I': kd += 4.5
+        elif protein[j] == 'V': kd += 4.2
+        elif protein[j] == 'L': kd += 3.8
+        elif protein[j] == 'F': kd += 2.8
+        elif protein[j] == 'C': kd += 2.5
+        elif protein[j] == 'M': kd += 1.9
+        elif protein[j] == 'A': kd += 1.8
+        elif protein[j] == 'G': kd += -0.4
+        elif protein[j] == 'T': kd += -0.7
+        elif protein[j] == 'S': kd += -0.8
+        elif protein[j] == 'W': kd += -0.9
+        elif protein[j] == 'Y': kd += -1.3
+        elif protein[j] == 'P': kd += -1.6
+        elif protein[j] == 'H': kd += -3.2
+        elif protein[j] == 'E': kd += -3.5
+        elif protein[j] == 'Q': kd += -3.5
+        elif protein[j] == 'D': kd += -3.5
+        elif protein[j] == 'N': kd += -3.5
+        elif protein[j] == 'K': kd += -3.9
+        elif protein[j] == 'R': kd += -4.5
+    return kd/(len(protein))
+    
+def helix(seq, frame, thres): 
+    for i in range(len(seq)+1-frame):
+        protein = seq[i:i+frame]
+        if "P" in protein: continue
+        if hydrophob(protein) >= thres: 
+            return True
+            
+    return False
+    
+
+for name, seq in polypeptides: 
+    if helix(seq[:31], 8, 2.5) and helix(seq[31:], 11, 2.0): 
+        print(name)
+        
+
 """
 python3 40transmembrane.py ../Data/at_prots.fa
 AT1G75120.1

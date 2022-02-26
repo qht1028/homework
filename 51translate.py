@@ -32,18 +32,27 @@ with open(sys.argv[1]) as fp:
     for line in fp.readlines():
         line=line.rstrip()
         if line[0] != ">":
-            seq += line
+            seq += line.upper()
+'''
 sequence = ""
 for nt in seq: 
-    sequence += DNA[nt]
+    sequence += DNA[nt]   
 
 for i in range(0, len(sequence), 3):
-    codon = ""
-    for j in range(i, i+3):
-        codon += sequence[j]
+    codon = sequence[i:i+3] 
     protein += gcode[codon]
     
 print(protein)
+'''
+for j in range(3): 
+    protein=""
+    for i in range(j, len(seq) - 2, 3):
+        codon = seq[i:i+3]
+        if codon not in gcode: 
+            protein += "X"
+        else: 
+            protein += gcode[codon]
+    print(f'frame{j+1}, {protein}')
 
 """
 python3 51translate.py ../Data/act1.fa

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/uqsr/bin/env python3
 # 52digest.py
 
 import re
@@ -10,21 +10,20 @@ import sys
 #    2. The restriction pattern
 # The output should be the sizes of the restriction fragments
 
-'''
-with open(sys.argv[1]) as fp:
-    for line in fp.readlines():
-        line = line.rstrip()
-        words = line[1:].split()
-        print(words)
-'''
 
 seq = ""
+DNA = False
 with open(sys.argv[1]) as fp:
     for line in fp.readlines():
         line=line.rstrip()
-        if line[0] != ">":
-            seq += line
-print(seq) 
+        words = line.split()
+        if len(line) == 0:
+            continue
+        if words[0] == "ORIGIN":
+            DNA = True
+        if DNA: 
+            for frag in words[1:]:
+                seq += frag 
  
 target = sys.argv[2]
 def digest(sequence): 
